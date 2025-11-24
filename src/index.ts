@@ -13,15 +13,23 @@ type petType = {
     age: number
 }
 
-const pet: petType = {
+const pets: petType[] = [
+    {
     name: "Dogens",
     species: "no species",
     adopted: false,
     age: 1
-}
+    },
+    {
+    name: "Catens",
+    species: "instant meowing",
+    adopted: true,
+    age: 0.5
+    },
+]
 
 app.get('/', (req, res) => {
-    res.json(pet)
+    res.json({pets: pets})
 })
 
 app.listen(PORT, ():void => {
