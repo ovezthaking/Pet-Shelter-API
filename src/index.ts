@@ -16,13 +16,13 @@ type petType = {
 const pets: petType[] = [
     {
     name: "Dogens",
-    species: "no species",
+    species: "Dog",
     adopted: false,
     age: 1
     },
     {
     name: "Catens",
-    species: "instant meowing",
+    species: "Cat",
     adopted: true,
     age: 0.5
     },
