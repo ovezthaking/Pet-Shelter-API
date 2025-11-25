@@ -32,7 +32,7 @@ app.get('/', (
 
   if(adopted){
     filteredPets = filteredPets.filter((pet: Pet): boolean => 
-        String(pet.adopted).toLowerCase() === adopted)
+        pet.adopted === JSON.parse(adopted))
   }
 
   res.json(filteredPets)
