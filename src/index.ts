@@ -20,10 +20,10 @@ app.get('/:id', (req: Request<{id: string}>,
 
     const id: number = parseInt(req.params.id, 10)
 
-    const pet: Pet | undefined = pets.find(pet => pet.id === id)
+    const pet: Pet | undefined = pets.find((pet: Pet): boolean => pet.id === id)
 
     if (!pet){
-        return res.status(400).json({error: 'Pet not found'})
+        return res.status(400).json({error: 'Pet not found by ID'})
     }
 
     res.status(200).json(pet)
