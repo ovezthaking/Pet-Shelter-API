@@ -11,18 +11,28 @@ const app: Express = express()
 
 app.use(cors())
 
+type PetQueryParams = {
+    species?: string,
+    adopted?: 'true' | 'false'
+}
+
 app.get('/', (
-    req:Request<{}, unknown, {}, {species?: string}>, 
+    req:Request<{}, unknown, {}, PetQueryParams>, 
     res:Response<Pet[]>
 ):void=> {
-    
-  const { species } = req.query
+
+  const { species, adopted } = req.query
 
   let filteredPets: Pet[] = pets
 
   if(species){
-    filteredPets = filteredPets.filter((pet: Pet): boolean =>
-     pet.species.toLowerCase() === species.toLowerCase())
+    filteredPets = filteredPets.filter((pet: Pet): boolean => 
+        pet.species.toLowerCase() === species.toLowerCase())
+  }
+
+  if(adopted){
+    filteredPets = filteredPets.filter((pet: Pet): boolean => 
+        String(pet.adopted).toLowerCase() === adopted)
   }
 
   res.json(filteredPets)
