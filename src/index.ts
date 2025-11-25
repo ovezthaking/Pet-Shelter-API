@@ -1,7 +1,5 @@
 import express from 'express'
 import type { Express, Request, Response } from 'express'
-import { pets } from './data/pets'
-import type { Pet } from './data/pets'
 import cors from 'cors'
 
 const PORT = 8000
