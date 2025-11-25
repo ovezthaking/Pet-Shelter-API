@@ -13,3 +13,20 @@ export const validateNumericId = (
         next()
     }
 }
+
+export const pleaseAuth = (
+    req: Request<{id:string}, unknown, {}, {password: string}>,
+    res: Response<{error: string}>,
+    next: NextFunction
+) => {
+
+    const {password} = req.query
+
+    if(password === "please"){
+        next()
+
+    }
+    else{
+        res.status(401).json({error: 'Unathorized error'})
+    }
+}
