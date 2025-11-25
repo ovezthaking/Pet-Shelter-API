@@ -11,12 +11,27 @@ const app: Express = express()
 
 app.use(cors())
 
-app.get('/', (req: Request, res: Response<Pet[]>): void => {
-    res.json(pets)
+app.get('/', (
+    req:Request<{}, unknown, {}, {species?: string}>, 
+    res:Response<Pet[]>
+):void=> {
+    
+  const { species } = req.query
+
+  let filteredPets: Pet[] = pets
+
+  if(species){
+    filteredPets = filteredPets.filter((pet: Pet): boolean =>
+     pet.species.toLowerCase() === species.toLowerCase())
+  }
+
+  res.json(filteredPets)
 })
 
-app.get('/:id', (req: Request<{id: string}>, 
-    res: Response<Pet | {error: string}>): void | Response<{error: string}> => {
+app.get('/:id', (
+    req: Request<{id: string}>, 
+    res: Response<Pet | {error: string}>
+): void | Response<{error: string}> => {
 
     const id: number = parseInt(req.params.id, 10)
 
