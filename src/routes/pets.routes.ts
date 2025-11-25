@@ -3,7 +3,7 @@ import type { Router, Request, Response } from 'express'
 import type { Pet } from '../data/pets'
 import { pets } from '../data/pets'
 
-const petRouter: Router = express.Router()
+export const petRouter: Router = express.Router()
 
 type PetQueryParams = {
     species?: string,
