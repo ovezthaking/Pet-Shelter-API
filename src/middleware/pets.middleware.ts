@@ -15,7 +15,7 @@ export const validateNumericId = (
 }
 
 export const pleaseAuth = (
-    req: Request<{id:string}, unknown, {}, {password: string}>,
+    req: Request<{id:string}, unknown, {}, {password?: string}>,
     res: Response<{error: string}>,
     next: NextFunction
 ) => {
@@ -27,6 +27,6 @@ export const pleaseAuth = (
 
     }
     else{
-        res.status(401).json({error: 'Unathorized error'})
+        res.status(401).json({error: 'Unathorized error. You must say \'please\''})
     }
 }
